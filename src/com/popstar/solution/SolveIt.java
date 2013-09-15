@@ -27,10 +27,9 @@ public class SolveIt {
 		return answer;
 	}
 
-	private void deal(Node p, ArrayList<Node> leafNodes) {
+	//核心方法
+	private void process(Node p, ArrayList<Node> leafNodes) {
 		while (!isLeafNode(p)) {
-			
-			
 			
 			
 		}
@@ -39,9 +38,25 @@ public class SolveIt {
 	// 判断这个节点是不是叶子节点 判断的是这个Node的afterStep属性
 	private boolean isLeafNode(Node node) {
 		boolean flag = false;
-
+		
 		return flag;
 	}
+	
+	// 判断这个节点是否能在这个阶段消除
+	private boolean isElementLinked(int row, int col, Node n) {
+		if (n.getAfterStep()[row][col] == 8)
+			return false;
+		if (row > 0	&& n.getAfterStep()[row][col] == n.getAfterStep()[row - 1][col])
+			return true;
+		if (row < 9	&& n.getAfterStep()[row][col] == n.getAfterStep()[row + 1][col])
+			return true;
+		if (col < 9	&& n.getAfterStep()[row][col] == n.getAfterStep()[row][col + 1])
+			return true;
+		if (col > 0	&& n.getAfterStep()[row][col] == n.getAfterStep()[row][col - 1])
+			return true;
+		return false;
+	}
+	
 
 	private static int[][] copyMatrix(int[][] q) {
 		int[][] temp = new int[10][10];
